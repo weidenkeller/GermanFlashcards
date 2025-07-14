@@ -1,0 +1,26 @@
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/wordListFragment">
+    
+    <fragment
+        android:id="@+id/wordListFragment"
+        android:name="com.example.germanflashcards.ui.main.WordListFragment">
+        <action
+            android:id="@+id/action_to_addWord"
+            app:destination="@id/addWordActivity" />
+    </fragment>
+        
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="com.example.germanflashcards.ui.category.CategoryFragment" />
+        
+    <fragment
+        android:id="@+id/statsFragment"
+        android:name="com.example.germanflashcards.ui.stats.StatsFragment" />
+        
+    <activity
+        android:id="@+id/addWordActivity"
+        android:name="com.example.germanflashcards.ui.add.AddWordActivity" />
+        
+</navigation>

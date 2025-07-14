@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/wordListFragment"
+        android:title="Слова" />
+    <item
+        android:id="@+id/categoryFragment"
+        android:title="Категории" />
+    <item
+        android:id="@+id/statsFragment"
+        android:title="Статистика" />
+</menu>
