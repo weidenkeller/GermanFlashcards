@@ -15,6 +15,9 @@ import com.example.germanflashcards.viewmodel.WordViewModel
 import kotlinx.coroutines.flow.collectLatest
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
+import android.content.Context
+import android.content.res.Configuration
+import java.util.Locale
 
 class WordListFragment : Fragment() {
     private var _binding: FragmentWordListBinding? = null
@@ -35,10 +38,14 @@ class WordListFragment : Fragment() {
         setupRecyclerView()
         setupObservers()
         setupListeners()
+        setupLanguageSwitcher()
     }
     
     private fun setupRecyclerView() {
-        wordAdapter = WordAdapter()
+        wordAdapter = WordAdapter { word ->
+            val updatedWord = word.copy(isLearned = !word.isLearned)
+            viewModel.updateWord(updatedWord)
+        }
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = wordAdapter
@@ -54,9 +61,44 @@ class WordListFragment : Fragment() {
     }
     
     private fun setupListeners() {
-        binding.fabAddWord.setOnClickListener {
+        binding.btnAddWord.setOnClickListener {
             findNavController().navigate(R.id.action_to_addWord)
         }
+    }
+
+    private val languages = listOf("ru", "de", "en")
+    private fun setupLanguageSwitcher() {
+        val currentLang = getCurrentLang()
+        updateLangSwitcher(currentLang)
+        binding.langSwitcherBlock.setOnClickListener {
+            val nextLang = getNextLang(getCurrentLang())
+            setLocale(nextLang)
+            updateLangSwitcher(nextLang)
+        }
+    }
+    private fun updateLangSwitcher(lang: String) {
+        val label = when(lang) {
+            "ru" -> "RU"
+            "de" -> "DE"
+            "en" -> "EN"
+            else -> lang.uppercase()
+        }
+        binding.tvLangSwitcher.text = label
+    }
+    private fun getCurrentLang(): String {
+        return Locale.getDefault().language
+    }
+    private fun getNextLang(current: String): String {
+        val idx = languages.indexOf(current)
+        return languages[(idx + 1) % languages.size]
+    }
+    private fun setLocale(lang: String) {
+        val locale = Locale(lang)
+        Locale.setDefault(locale)
+        val config = Configuration()
+        config.setLocale(locale)
+        requireActivity().baseContext.resources.updateConfiguration(config, requireActivity().baseContext.resources.displayMetrics)
+        requireActivity().recreate()
     }
 
     override fun onDestroyView() {

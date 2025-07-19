@@ -21,6 +21,11 @@ import com.example.germanflashcards.viewmodel.WordViewModel
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
+import android.widget.ArrayAdapter
+import androidx.lifecycle.lifecycleScope
+import com.example.germanflashcards.data.model.Category
+import com.example.germanflashcards.data.AppDatabase
+import kotlinx.coroutines.launch
 
 class AddWordActivity : AppCompatActivity() {
     
@@ -28,6 +33,7 @@ class AddWordActivity : AppCompatActivity() {
     private lateinit var viewModel: WordViewModel
     private var selectedImageUri: Uri? = null
     private var selectedCategoryId: Long = 1 // По умолчанию первая категория
+    private var categoryList: List<Category> = emptyList()
     
     private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         uri?.let { 
@@ -43,9 +49,33 @@ class AddWordActivity : AppCompatActivity() {
         setContentView(binding.root)
         
         viewModel = ViewModelProvider(this)[WordViewModel::class.java]
-        
+
+        loadCategories() // Загружаем категории
         setupUI()
         setupListeners()
+    }
+
+    private fun loadCategories() {
+        val db = AppDatabase.getInstance(this)
+        lifecycleScope.launch {
+            categoryList = db.categoryDao().getAllCategoriesSync()
+            val categoryNames = categoryList.map { it.name }
+            val adapter = ArrayAdapter(this@AddWordActivity, android.R.layout.simple_spinner_item, categoryNames)
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            binding.spinnerCategory.adapter = adapter
+            // По умолчанию выбираем первую категорию, если есть
+            if (categoryList.isNotEmpty()) {
+                selectedCategoryId = categoryList[0].id
+            }
+        }
+        binding.spinnerCategory.setOnItemSelectedListener(object : android.widget.AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: android.widget.AdapterView<*>, view: android.view.View?, position: Int, id: Long) {
+                if (categoryList.isNotEmpty()) {
+                    selectedCategoryId = categoryList[position].id
+                }
+            }
+            override fun onNothingSelected(parent: android.widget.AdapterView<*>) {}
+        })
     }
     
     private fun setupUI() {

@@ -13,7 +13,19 @@
         
     <fragment
         android:id="@+id/categoryFragment"
-        android:name="com.example.germanflashcards.ui.category.CategoryFragment" />
+        android:name="com.example.germanflashcards.ui.category.CategoryFragment">
+        <action
+            android:id="@+id/action_categoryFragment_to_categoryWordsFragment"
+            app:destination="@id/categoryWordsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/categoryWordsFragment"
+        android:name="com.example.germanflashcards.ui.category.CategoryWordsFragment">
+        <argument
+            android:name="categoryName"
+            app:argType="string" />
+    </fragment>
         
     <fragment
         android:id="@+id/statsFragment"

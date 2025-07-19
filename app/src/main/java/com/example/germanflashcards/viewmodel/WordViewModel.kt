@@ -9,6 +9,7 @@ import com.example.germanflashcards.data.model.Category
 import com.example.germanflashcards.data.model.Word
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class WordViewModel(application: Application) : AndroidViewModel(application) {
     
@@ -32,5 +33,28 @@ class WordViewModel(application: Application) : AndroidViewModel(application) {
     
     fun deleteWord(word: Word) = viewModelScope.launch {
         wordDao.delete(word)
+    }
+
+    // Методы для работы с категориями
+    fun insertCategory(category: Category) = viewModelScope.launch {
+        categoryDao.insert(category)
+    }
+
+    fun updateCategory(category: Category) = viewModelScope.launch {
+        categoryDao.update(category)
+    }
+
+    fun deleteCategory(category: Category) = viewModelScope.launch {
+        categoryDao.delete(category)
+    }
+
+    fun getCategoryByName(name: String): Flow<Category?> = categoryDao.getCategoryByName(name)
+
+    fun getWordsByCategoryAndStatus(categoryId: Long, isLearned: Boolean): Flow<List<Word>> = 
+        wordDao.getWordsByCategoryAndStatus(categoryId, isLearned)
+
+    // Синхронный метод для получения категорий
+    fun getCategoriesSync(): List<Category> = runBlocking {
+        categoryDao.getAllCategoriesSync()
     }
 }

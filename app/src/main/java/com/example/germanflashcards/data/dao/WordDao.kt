@@ -16,6 +16,9 @@ interface WordDao {
     @Query("SELECT * FROM words WHERE isLearned = :isLearned")
     fun getWordsByStatus(isLearned: Boolean): Flow<List<Word>>
 
+    @Query("SELECT * FROM words WHERE categoryId = :categoryId AND isLearned = :isLearned")
+    fun getWordsByCategoryAndStatus(categoryId: Long, isLearned: Boolean): Flow<List<Word>>
+
     @Insert
     suspend fun insert(word: Word)
 

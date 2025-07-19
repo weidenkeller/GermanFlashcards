@@ -38,6 +38,19 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Spinner для выбора категории -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Категория"
+            android:textSize="16sp"
+            android:layout_marginBottom="4dp" />
+        <Spinner
+            android:id="@+id/spinnerCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp" />
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSelectImage"
             android:layout_width="match_parent"

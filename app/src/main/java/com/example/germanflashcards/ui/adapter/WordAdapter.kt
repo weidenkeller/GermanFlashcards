@@ -8,9 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.germanflashcards.data.model.Word
 import com.example.germanflashcards.databinding.ItemWordBinding
 
-class WordAdapter : ListAdapter<Word, WordAdapter.WordViewHolder>(WordDiffCallback()) {
+class WordAdapter(
+    private val onMarkLearned: (Word) -> Unit
+) : ListAdapter<Word, WordAdapter.WordViewHolder>(WordDiffCallback()) {
     
-    class WordViewHolder(private val binding: ItemWordBinding) : RecyclerView.ViewHolder(binding.root) {
+    class WordViewHolder(private val binding: ItemWordBinding, private val onMarkLearned: (Word) -> Unit) : RecyclerView.ViewHolder(binding.root) {
         fun bind(word: Word) {
             binding.russianWord.text = word.russian
             binding.germanWord.text = word.german
@@ -38,12 +40,37 @@ class WordAdapter : ListAdapter<Word, WordAdapter.WordViewHolder>(WordDiffCallba
                     binding.backLayout.visibility = View.GONE
                 }
             }
+
+            // Обработка клика по кнопке "выучено"
+            binding.btnMarkLearned.setOnClickListener {
+                onMarkLearned(word)
+            }
+            // Визуальное выделение выученного слова и надписи
+            if (word.isLearned) {
+                binding.btnMarkLearned.setColorFilter(
+                    binding.root.context.getColor(com.example.germanflashcards.R.color.green)
+                )
+                binding.btnMarkLearned.alpha = 1.0f
+                binding.tvLearned.visibility = View.VISIBLE
+                binding.root.setCardBackgroundColor(
+                    binding.root.context.getColor(com.example.germanflashcards.R.color.white)
+                )
+            } else {
+                binding.btnMarkLearned.setColorFilter(
+                    binding.root.context.getColor(android.R.color.darker_gray)
+                )
+                binding.btnMarkLearned.alpha = 0.5f
+                binding.tvLearned.visibility = View.GONE
+                binding.root.setCardBackgroundColor(
+                    binding.root.context.getColor(android.R.color.background_light)
+                )
+            }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WordViewHolder {
         val binding = ItemWordBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return WordViewHolder(binding)
+        return WordViewHolder(binding, onMarkLearned)
     }
 
     override fun onBindViewHolder(holder: WordViewHolder, position: Int) {

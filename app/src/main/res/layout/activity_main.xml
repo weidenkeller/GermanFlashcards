@@ -19,5 +19,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:menu="@menu/bottom_nav_menu"
+        app:itemBackground="@drawable/bottom_nav_item_bg"
+        android:background="@color/bottom_nav_bg"
+        android:elevation="8dp"
         app:layout_constraintBottom_toBottomOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btnToggleTheme"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="8dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/baseline_dark_mode_24"
+        android:contentDescription="Переключить тему"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
