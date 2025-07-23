@@ -13,37 +13,37 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!-- Кнопка "выучено" -->
-        <ImageButton
-            android:id="@+id/btnMarkLearned"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_gravity="end|top"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_check_circle"
-            android:contentDescription="Отметить как выученное"
-            android:tint="@color/teal_700"
-            android:padding="4dp" />
+        <!-- Кнопки управления в правом верхнем углу -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="end|top">
+
+            <ImageButton
+                android:id="@+id/btnEditWord"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_edit"
+                android:contentDescription="@string/edit"
+                android:tint="@color/teal_700"
+                android:padding="4dp" />
+
+            <ImageButton
+                android:id="@+id/btnMarkLearned"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_check_circle"
+                android:contentDescription="@string/learned"
+                android:tint="@color/teal_700"
+                android:padding="4dp" />
+        </LinearLayout>
 
         <!-- Лицевая сторона -->
         <LinearLayout
             android:id="@+id/front_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
-            <TextView
-                android:id="@+id/russian_word"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:gravity="center"
-                android:textColor="@color/card_text" />
-        </LinearLayout>
-
-        <!-- Обратная сторона -->
-        <LinearLayout
-            android:id="@+id/back_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -62,6 +62,22 @@
                 android:layout_marginTop="8dp"
                 android:scaleType="centerCrop"
                 android:visibility="gone" />
+        </LinearLayout>
+
+        <!-- Обратная сторона -->
+        <LinearLayout
+            android:id="@+id/back_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+            <TextView
+                android:id="@+id/russian_word"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:textColor="@color/card_text" />
             <!-- Надпись 'Выучено' -->
             <TextView
                 android:id="@+id/tvLearned"

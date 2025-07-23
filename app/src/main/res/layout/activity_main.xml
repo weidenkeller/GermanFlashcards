@@ -22,6 +22,7 @@
         app:itemBackground="@drawable/bottom_nav_item_bg"
         android:background="@color/bottom_nav_bg"
         android:elevation="8dp"
+        app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent" />
 
     <ImageButton

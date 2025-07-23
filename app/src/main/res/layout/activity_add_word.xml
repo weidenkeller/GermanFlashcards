@@ -14,10 +14,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:hint="Слово на русском">
+            android:hint="@string/german_word">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etRussianWord"
+                android:id="@+id/etGermanWord"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text" />
@@ -28,10 +28,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:hint="Слово на немецком">
+            android:hint="@string/russian_word">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etGermanWord"
+                android:id="@+id/etRussianWord"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text" />
@@ -42,7 +42,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Категория"
+            android:text="@string/category"
             android:textSize="16sp"
             android:layout_marginBottom="4dp" />
         <Spinner
@@ -56,7 +56,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:text="Выбрать изображение"
+            android:text="@string/select_image"
             app:icon="@android:drawable/ic_menu_gallery" />
 
         <ImageView
@@ -73,7 +73,7 @@
             android:id="@+id/btnSave"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Сохранить слово"
+            android:text="@string/save_word"
             app:icon="@android:drawable/ic_menu_save" />
 
     </LinearLayout>

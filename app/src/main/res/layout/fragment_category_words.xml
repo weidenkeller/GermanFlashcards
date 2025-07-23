@@ -48,7 +48,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Невыученные слова"
+            android:text="@string/unlearned_words"
             android:checked="true"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
         <com.google.android.material.button.MaterialButton
@@ -56,7 +56,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Выученные слова"
+            android:text="@string/learned_words"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
     </LinearLayout>
 

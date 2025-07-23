@@ -17,6 +17,7 @@
     <string name="cancel">Abbrechen</string>
     <string name="edit">Bearbeiten</string>
     <string name="delete">Löschen</string>
+    <string name="save_word">Wort speichern</string>
     
     <!-- Формы -->
     <string name="russian_word">Wort auf Russisch</string>
@@ -24,6 +25,7 @@
     <string name="select_image">Bild auswählen</string>
     <string name="category">Kategorie</string>
     <string name="category_name">Kategoriename</string>
+    <string name="category_with_name">Kategorie: %1$s</string>
     
     <!-- Сообщения -->
     <string name="word_added">Wort hinzugefügt!</string>
@@ -35,6 +37,8 @@
     <string name="learned">Gelernt</string>
     <string name="unlearned_words">Ungelernte Wörter</string>
     <string name="learned_words">Gelernte Wörter</string>
+    <string name="learned_words_count">Gelernte Wörter: %1$d</string>
+    <string name="unlearned_words_count">Ungelernte Wörter: %1$d</string>
     
     <!-- Навигация -->
     <string name="back">Zurück</string>
@@ -55,4 +59,17 @@
     <string name="test">Test</string>
     <string name="start_test">Test starten</string>
     <string name="test_result">Testergebnis</string>
+    <string name="edit_category_title">Kategorie bearbeiten</string>
+    <string name="save_category">Speichern</string>
+    <string name="cancel_category">Abbrechen</string>
+    <string name="delete_category">Löschen</string>
+    <string name="category_hint">Kategoriename</string>
+    <string name="search">Suche</string>
+    <string name="search_hint">Wort suchen...</string>
+    <string name="create_new_test">Neuen Test erstellen</string>
+    <string name="test_started">Test gestartet!</string>
+    <string name="enter_translation">Übersetzung eingeben...</string>
+    <string name="ok">OK</string>
+    <string name="correct">Richtig!</string>
+    <string name="incorrect">Falsch!</string>
 </resources> 

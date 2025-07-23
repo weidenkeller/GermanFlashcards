@@ -20,6 +20,7 @@ import com.google.android.material.textfield.TextInputEditText
 import android.widget.LinearLayout
 import android.widget.Toast
 import android.util.Log
+import com.example.germanflashcards.R
 
 class CategoryFragment : Fragment() {
     private var _binding: FragmentCategoryBinding? = null
@@ -105,7 +106,7 @@ class CategoryFragment : Fragment() {
         }
 
         val editText = TextInputEditText(requireContext()).apply {
-            hint = "Название категории"
+            hint = getString(R.string.category_hint)
             setText(category.name)
             layoutParams = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
@@ -116,11 +117,11 @@ class CategoryFragment : Fragment() {
         dialogView.addView(editText)
 
         val dialog = MaterialAlertDialogBuilder(requireContext())
-            .setTitle("Редактировать категорию")
+            .setTitle(getString(R.string.edit_category_title))
             .setView(dialogView)
-            .setPositiveButton("Сохранить", null)
-            .setNegativeButton("Отмена", null)
-            .setNeutralButton("Удалить", null)
+            .setPositiveButton(getString(R.string.save_category), null)
+            .setNegativeButton(getString(R.string.cancel_category), null)
+            .setNeutralButton(getString(R.string.delete_category), null)
             .create()
 
         dialog.setOnShowListener {
@@ -133,7 +134,7 @@ class CategoryFragment : Fragment() {
                     viewModel.updateCategory(updatedCategory)
                     dialog.dismiss()
                 } else {
-                    Toast.makeText(requireContext(), "Название не может быть пустым", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), getString(R.string.name_cannot_be_empty), Toast.LENGTH_SHORT).show()
                 }
             }
             deleteButton.setOnClickListener {
@@ -145,14 +146,14 @@ class CategoryFragment : Fragment() {
 
     private fun showDeleteCategoryDialog(category: Category, parentDialog: android.app.Dialog) {
         MaterialAlertDialogBuilder(requireContext())
-            .setTitle("Удалить категорию")
-            .setMessage("Вы действительно хотите удалить эту категорию?")
-            .setPositiveButton("Удалить") { dialog, _ ->
+            .setTitle(getString(R.string.delete_category_title))
+            .setMessage(getString(R.string.delete_category_message))
+            .setPositiveButton(getString(R.string.delete_category)) { dialog, _ ->
                 viewModel.deleteCategory(category)
                 dialog.dismiss()
                 parentDialog.dismiss()
             }
-            .setNegativeButton("Отмена") { dialog, _ ->
+            .setNegativeButton(getString(R.string.cancel_category)) { dialog, _ ->
                 dialog.dismiss()
             }
             .show()
@@ -170,7 +171,7 @@ class CategoryFragment : Fragment() {
             setPadding(32, 32, 32, 32)
         }
         val editText = TextInputEditText(requireContext()).apply {
-            hint = "Название категории"
+            hint = getString(R.string.category_hint)
             layoutParams = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
@@ -178,10 +179,10 @@ class CategoryFragment : Fragment() {
         }
         dialogView.addView(editText)
         val dialog = MaterialAlertDialogBuilder(requireContext())
-            .setTitle("Новая категория")
+            .setTitle(getString(R.string.new_category))
             .setView(dialogView)
-            .setPositiveButton("Создать", null)
-            .setNegativeButton("Отмена", null)
+            .setPositiveButton(getString(R.string.save_category), null)
+            .setNegativeButton(getString(R.string.cancel_category), null)
             .create()
         dialog.setOnShowListener {
             val button = dialog.getButton(android.app.AlertDialog.BUTTON_POSITIVE)
@@ -191,7 +192,7 @@ class CategoryFragment : Fragment() {
                     viewModel.insertCategory(com.example.germanflashcards.data.model.Category(name = name))
                     dialog.dismiss()
                 } else {
-                    Toast.makeText(requireContext(), "Название не может быть пустым", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), getString(R.string.name_cannot_be_empty), Toast.LENGTH_SHORT).show()
                 }
             }
         }

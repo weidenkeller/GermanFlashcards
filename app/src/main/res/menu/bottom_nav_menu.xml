@@ -8,4 +8,7 @@
     <item
         android:id="@+id/statsFragment"
         android:title="@string/statistics" />
+    <item
+        android:id="@+id/testFragment"
+        android:title="@string/test" />
 </menu>

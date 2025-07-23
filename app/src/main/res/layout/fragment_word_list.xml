@@ -47,6 +47,42 @@
 
     </LinearLayout>
 
+    <!-- Поиск -->
+    <LinearLayout
+        android:id="@+id/searchBarContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/bottom_nav_item">
+
+        <ImageButton
+            android:id="@+id/btnShowSearch"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@android:color/transparent"
+            android:src="@android:drawable/ic_menu_search"
+            android:contentDescription="@string/search"
+            android:tint="@color/card_text" />
+
+        <EditText
+            android:id="@+id/etSearch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/search_hint"
+            android:visibility="gone"
+            android:inputType="text"
+            android:background="@android:color/transparent"
+            android:textColor="@color/card_text"
+            android:textSize="16sp"
+            android:padding="8dp"
+            android:backgroundTint="@color/bottom_nav_item" />
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
